@@ -1,5 +1,6 @@
 package AssignmentGroup;
 
+//To use arraylists, we need to import it from  java.util library
 import java.util.ArrayList;
 
 public class BookManagement {
@@ -7,7 +8,7 @@ public class BookManagement {
 	//creating a list of managed books
 	private ArrayList<Book> books = new ArrayList<>();
 
-	//constructor
+	//This is a constructor to store values into the arrayList
 	public BookManagement() {
 		this.books = new ArrayList<>();
 	}
@@ -17,7 +18,7 @@ public class BookManagement {
 		books.add(book);
 	}
 
-	//method for removing books
+	//This is a method to delete books, and checks if a book exists first
 	public boolean deleteBook(String bookID) {
 		for (Book book : books) {
 			if (book.getBookID().equals(bookID)) {
@@ -39,7 +40,7 @@ public class BookManagement {
 		return null;
 	}
 
-	//method to display all books for the user
+	//method to display all books
 	public void displayAllBooks() {
 
 		int numberList = 0;
@@ -48,6 +49,5 @@ public class BookManagement {
 			numberList++;
 			System.out.println(numberList + ". " + book.getTitle() + " by " + book.getAuthor());
 		}
-
 	}
 }

@@ -1,5 +1,6 @@
 package AssignmentGroup;
 
+//for the user to input data, we need to import scanner from the java.util library
 import java.util.Scanner;
 
 public class LMS {
@@ -13,11 +14,13 @@ public class LMS {
 
     public void mainMenu() {
 
+        //User inputs to choose from the main menu below
         Scanner scanner = new Scanner(System.in);
         int choice;
 
         while (true) {
 
+            //this displays the main Menu
             System.out.println("====================================================");
             System.out.println("Welcome to the Library Management System!");
             System.out.println("====================================================");
@@ -35,6 +38,7 @@ public class LMS {
             choice = scanner.nextInt();
             System.out.println();
 
+            //Attributes used for if loop below
             scanner.nextLine();
             String name;
             int age;
@@ -44,6 +48,7 @@ public class LMS {
             String userID;
             String userInput;
 
+            //This is the if loop, each displayed by user Input
             if (choice == 1) {
                 // a method to add a user to the user arraylist
                 System.out.print("Please enter your name: ");
@@ -72,7 +77,7 @@ public class LMS {
             }
             if (choice == 3) {
                 //a method to displays All Users
-                System.out.println("Displaying All Users");
+                System.out.println("Displaying All Users:");
                 userManagement.displayAllUsers();
                 System.out.println();
 
@@ -85,12 +90,13 @@ public class LMS {
                 title = scanner.nextLine();
                 System.out.print("Please enter author's name: ");
                 author = scanner.nextLine();
-                Book book = new Book(bookID, title, author, true);
+                Book book = new Book(bookID, title, author);
                 bookManagement.addBook(book);
                 System.out.println("Book" + book.getTitle() + " added successfully! ");
                 System.out.println();
             }
             if (choice == 5) {
+
                 // a method to delete a book from the book arraylist
                 System.out.print("Please enter book ID: ");
                 bookID = scanner.nextLine();
@@ -105,7 +111,7 @@ public class LMS {
             if (choice == 6) {
 
                 // a method to display all books from the book arraylist
-                System.out.println("Displaying All Books");
+                System.out.println("Displaying All Books:");
                 bookManagement.displayAllBooks();
                 System.out.println();
 
@@ -129,6 +135,7 @@ public class LMS {
 
             if (choice == 8) {
 
+                // a method to find a book from the book arraylist
                 System.out.print("Please enter book ID to find book: ");
                 bookID = scanner.nextLine();
 
@@ -144,7 +151,9 @@ public class LMS {
                 }
 
             }
+
             if (choice == 9) {
+                //a method to terminate the application
                 System.out.print("Are you sure you want to exit? (yes/no): ");
                 userInput = scanner.nextLine();
                 if (userInput.trim().equalsIgnoreCase("yes")) {
@@ -154,6 +163,7 @@ public class LMS {
             }
 
 
+            //a method to terminate the application
             System.out.print("Would you like to perform another operation? (yes/no): ");
             if (scanner.nextLine().trim().equalsIgnoreCase("no")) {
                 System.out.println("Thank you for using the Library Management System!");
