@@ -66,7 +66,7 @@ public class LMS {
             if (choice == 2) {
 
                 // a method to delete a user from the user arraylist
-                System.out.println("Enter user ID to delete: ");
+                System.out.print("Enter user ID to delete: ");
                 userID = scanner.nextLine();
                 if (userManagement.deleteUser(userID)) {
                     System.out.println();
