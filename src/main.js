@@ -15,15 +15,15 @@ k.loadSprite("spritesheet", "./spritesheet.png", {
   },
 });
  
-k.loadSprite("map1", "./map1.png");
+k.loadSprite("map", "./map.png");
 
 k.setBackground(k.Color.fromHex("#311047"));
 
 k.scene("main", async () => {
-  const mapData = await (await fetch("./map1.json")).json();
+  const mapData = await (await fetch("./map.json")).json();
   const layers = mapData.layers;
 
-  const map = k.add([k.sprite("map1"), k.pos(0), k.scale(scaleFactor)]);
+  const map = k.add([k.sprite("map"), k.pos(0), k.scale(scaleFactor)]);
 
   const player = k.make([
     k.sprite("sprite", { anim: "idle-down" }),
@@ -95,17 +95,17 @@ k.scene("main", async () => {
   k.onMouseDown((mouseBtn)=> {
     if (mouseBtn !== "left" || player.isInDialogue )  return; 
 
-    const worldMouseDowen= k.toWorld(k.mousePos());
+    const worldMouseDown= k.toWorld(k.mousePos());
     player.moveTo(worldMousePos, player.speed);
 
-    const mouseAngel = player.pos.angle(worldMousePos);
+    const mouseAngle = player.pos.angle(worldMousePos);
 
-    const lowerBoned = 50;
-    const upperBond = 125;
+    const lowerBound = 50;
+    const upperBound = 125;
 
     if (
-        mouseAngel> lowerBoned &&
-        mouseAngel <upperBond && 
+        mouseAngle > lowerBound &&
+        mouseAngle <upperBound && 
         player.curAnim() !== "walk-up"
     ) {
         player.play("walk-up");
@@ -114,23 +114,24 @@ k.scene("main", async () => {
     }
 
     if(
-        mouseAngel < -lowerBoned &&
-        mouseAngel > - upperBond &&
+        mouseAngle < -lowerBound &&
+        mouseAngle > - upperBound &&
         player.curAnim() !== "walk-down"
     ) {
         player.play("walk-down")
-        player.direction = "doen";
+        player.direction = "down";
         return;
     }
 
-    if(Math.abs(mouseAngel)> upperBond){
+    if(Math.abs(mouseAngle)> upperBound){
         player.flipX = false;
         if (player.curAnim() !== "walk-side") player.play("walk-side");
+        player.direction = "right";
         return;
 
     }
 
-    if (Math.abs(mouseAngle)< lowerBoned){
+    if (Math.abs(mouseAngle)< lowerBound){
         player.flipX = true;
         if (player.curAnim() !== "walk-side") player.play("walk-side");
         player.direction = "left";
@@ -164,14 +165,14 @@ k.scene("main", async () => {
         k.isKeyDown("down"),
     ];
 
-    let nb0fkeyPressed = 0;
+    let nbOfKeyPressed = 0;
     for (const key of keyMap){
         if (key){
-            nb0fkeyPressed++;
+          nbOfKeyPressed++;
         }
     }
 
-    if (nb0fkeyPressed> 1 ) return;
+    if (nbOfKeyPressed> 1 ) return;
     if (player.isInDialogue)return;
 
     if (keyMap[0]){
